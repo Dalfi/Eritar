@@ -8,7 +8,10 @@ namespace Eritar.Framework
   public class World
   {
     public Tile[,] tiles;
-    public List<WorldObject> objects;
+    public List<Unit> Units { get; protected set; }
+    public List<Building> Buildings { get; protected set; }
+    public List<RawResource> RawResources { get; protected set; }
+    public List<Item> Items { get; protected set; }
 
     /// <summary>
     /// The tile width of the world.
@@ -23,11 +26,15 @@ namespace Eritar.Framework
     public int TileSize { get; protected set; }
 
     Action<Tile> cbTileChanged;
-
+    Action<Building> cbBuildingCreated;
+    Action<Unit> cbUnitCreated;
 
     public World(int width, int height, int tileSize)
     {
-      objects = new List<WorldObject>();
+      Units = new List<Unit>();
+      Buildings = new List<Building>();
+      RawResources = new List<RawResource>();
+      Items = new List<Item>();
 
       if (tileSize != 1 && tileSize % 2 != 0)
       {
@@ -86,13 +93,45 @@ namespace Eritar.Framework
       cbTileChanged -= callbackfunc;
     }
 
+    public void RegisterBuildingCreated(Action<Building> callbackfunc)
+    {
+      cbBuildingCreated += callbackfunc;
+    }
+
+    public void UnregisterBuildingCreated(Action<Building> callbackfunc)
+    {
+      cbBuildingCreated -= callbackfunc;
+    }
+
+    public void RegisterUnitCreated(Action<Unit> callbackfunc)
+    {
+      cbUnitCreated += callbackfunc;
+    }
+
+    public void UnregisterUnitCreated(Action<Unit> callbackfunc)
+    {
+      cbUnitCreated -= callbackfunc;
+    }
+
     /// <summary>
     /// Updates the world
     /// </summary>
     /// <param name="deltaTime">Time passed since the last frame</param>
     public void Update(float deltaTime)
     {
-      foreach (WorldObject obj in objects)
+      foreach (Unit obj in Units)
+      {
+        obj.Update(deltaTime);
+      }
+      foreach (Building obj in Buildings)
+      {
+        obj.Update(deltaTime);
+      }
+      foreach (RawResource obj in RawResources)
+      {
+        obj.Update(deltaTime);
+      }
+      foreach (Item obj in Items)
       {
         obj.Update(deltaTime);
       }
@@ -106,24 +145,44 @@ namespace Eritar.Framework
     /// <param name="y">The y coordinate.</param>
     public Tile GetTileAt(int x, int y)
     {
-      //get the correct x and y for the tiles
-
-
-
       if (x >= Width || x < 0 || y >= Height || y < 0)
         return null;
 
       return tiles[x, y];
     }
 
-    public float GetWidth()
+    public float GetCorrectWidth()
     {
       return this.Width * this.TileSize;
     }
 
-    public float GetHeight()
+    public float GetCorrectHeight()
     {
       return this.Height * this.TileSize;
+    }
+
+    public void CreateBuilding(Building buildingType, Player owner, Vector3 position, Quaternion rotation)
+    {
+      Building building = buildingType.Clone();
+
+      building.Owner = owner;
+      building.Position = position;
+      building.Rotation = rotation;
+
+      Buildings.Add(building);
+
+      if (cbBuildingCreated != null)
+        cbBuildingCreated(building);
+    }
+
+    public void CreateUnit(Unit unit, Player owner)
+    {
+      unit.Owner = owner;
+
+      Units.Add(unit);
+
+      if (cbUnitCreated != null)
+        cbUnitCreated(unit);
     }
   }
 }

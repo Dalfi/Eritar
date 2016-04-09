@@ -7,21 +7,14 @@ namespace Eritar.Framework.Entities.General
 {
   public class Building : WorldObject, IsConstructable, INeedResearch
   {
-    private Dictionary<RawResource, int> _rawIngredients;
-    private Dictionary<Item, int> _ingredients;
+    private List<Ingredient> _ingredients;
     private List<Unit> _units;
-    private Queue<Unit> _buildQueue;
+    private Queue<Unit> _buildQueue = new Queue<Unit>();
 
     private int _hitpoints;
     private float _buildingTime;
-
-    public Dictionary<RawResource, int> RawIngredients
-    {
-      get { return _rawIngredients; }
-      set { _rawIngredients = value; }
-    }
-
-    public Dictionary<Item, int> Ingredients
+    
+    public List<Ingredient> Ingredients
     {
       get { return _ingredients; }
       set { _ingredients = value; }
@@ -33,6 +26,7 @@ namespace Eritar.Framework.Entities.General
       set { _units = value; }
     }
 
+    [XmlIgnore]
     public Queue<Unit> BuildQueue
     {
       get { return _buildQueue; }
@@ -66,6 +60,28 @@ namespace Eritar.Framework.Entities.General
 
     public List<string> NeededResearch { get; set; }
 
+    public Building()
+    {
+    }
+
+    protected Building(Building b)
+      :base()
+    {
+      this.ObjectName = b.ObjectName;
+      this.ObjectGUID = b.ObjectGUID;
+      this.ObjectDescription = b.ObjectDescription;
+      this.IconFilePath = b.IconFilePath;
+      this.Ingredients = b.Ingredients;
+      this.Units = b.Units;
+      this.Hitpoints = b.Hitpoints;
+      this.BuildingTime = b.BuildingTime;
+    }
+
+    virtual public Building Clone()
+    {
+      return new Building(this);
+    }
+
     public override void Update(float deltaTime)
     {
       if (IsInConstruction)
@@ -87,25 +103,29 @@ namespace Eritar.Framework.Entities.General
       obj.PrepareSaveObject();
 
       XmlSerializer serializer = new XmlSerializer(typeof(Building));
-      TextWriter writer = new StreamWriter(FilePath);
-
-      // Serializes the purchase order, and closes the TextWriter.
-      serializer.Serialize(writer, obj);
-      writer.Close();
+      using (TextWriter writer = new StreamWriter(FilePath))
+      {
+        // Serializes the purchase order, and closes the TextWriter.
+        serializer.Serialize(writer, obj);
+        writer.Close();
+      }
 
       return true;
     }
 
     public static Building LoadBuildingFromXML(string FilePath)
     {
+      Building obj;
+
       XmlSerializer serializer = new XmlSerializer(typeof(Building));
       serializer.UnknownNode += new XmlNodeEventHandler(serializer_UnknownNode);
       serializer.UnknownAttribute += new XmlAttributeEventHandler(serializer_UnknownAttribute);
 
       // A FileStream is needed to read the XML document.
-      FileStream fs = new FileStream(FilePath, FileMode.Open);
-
-      Building obj = (Building)serializer.Deserialize(fs);
+      using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+      { 
+        obj = (Building)serializer.Deserialize(fs);
+      }
 
       return obj;
     }

@@ -7,8 +7,7 @@ namespace Eritar.Framework.Entities.General
 {
   public class Unit : WorldObject, IsConstructable, INeedResearch
   {
-    private Dictionary<RawResource, int> _rawIngredients;
-    private Dictionary<Item, int> _ingredients;
+    private List<Ingredient> _ingredients;
 
     private int _hitpoints;
     private int _armor;
@@ -21,13 +20,7 @@ namespace Eritar.Framework.Entities.General
     private float _rotateSpeed;
     private float _buildingTime;
 
-    public Dictionary<RawResource, int> RawIngredients
-    {
-      get { return _rawIngredients; }
-      set { _rawIngredients = value; }
-    }
-
-    public Dictionary<Item, int> Ingredients
+    public List<Ingredient> Ingredients
     {
       get { return _ingredients; }
       set { _ingredients = value; }
@@ -117,25 +110,29 @@ namespace Eritar.Framework.Entities.General
       obj.PrepareSaveObject();
 
       XmlSerializer serializer = new XmlSerializer(typeof(Unit));
-      TextWriter writer = new StreamWriter(FilePath);
-
-      // Serializes the purchase order, and closes the TextWriter.
-      serializer.Serialize(writer, obj);
-      writer.Close();
+      using (TextWriter writer = new StreamWriter(FilePath))
+      {
+        // Serializes the purchase order, and closes the TextWriter.
+        serializer.Serialize(writer, obj);
+        writer.Close();
+      }
 
       return true;
     }
 
     public static Unit LoadUnitFromXML(string FilePath)
     {
+      Unit obj;
+
       XmlSerializer serializer = new XmlSerializer(typeof(Unit));
       serializer.UnknownNode += new XmlNodeEventHandler(serializer_UnknownNode);
       serializer.UnknownAttribute += new XmlAttributeEventHandler(serializer_UnknownAttribute);
 
       // A FileStream is needed to read the XML document.
-      FileStream fs = new FileStream(FilePath, FileMode.Open);
-
-      Unit obj = (Unit)serializer.Deserialize(fs);
+      using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+      {
+        obj = (Unit)serializer.Deserialize(fs);
+      }
 
       return obj;
     }

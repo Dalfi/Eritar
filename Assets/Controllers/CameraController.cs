@@ -87,7 +87,8 @@ namespace Eritar
       movement.y = 0;
 
       // handle camera scrolling
-      movement.y -= GlobalResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");
+      if(!Input.GetKey(KeyCode.LeftShift))
+        movement.y -= GlobalResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");
 
       //calculate desired camera position based on received input
       Vector3 origin = Camera.main.transform.position;

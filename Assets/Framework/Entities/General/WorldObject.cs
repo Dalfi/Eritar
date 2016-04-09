@@ -4,7 +4,7 @@ namespace Eritar.Framework.Entities.General
 {
   public abstract class WorldObject
   {
-    protected Player Owner;
+    private Player _owner;
 
     private string _objectName;
     private string _objectDescription;
@@ -12,6 +12,7 @@ namespace Eritar.Framework.Entities.General
     private string _objectGUID;
 
     private Vector3 position;
+    private Quaternion rotation;
 
     public string ObjectName
     {
@@ -40,6 +41,18 @@ namespace Eritar.Framework.Entities.General
     {
       get { return position; }
       set { position = value; }
+    }
+
+    public Quaternion Rotation
+    {
+      get { return rotation; }
+      set { rotation = value; }
+    }
+
+    public Player Owner
+    {
+      get { return _owner; }
+      set { _owner = value; }
     }
 
     public abstract void Update(float deltaTime);

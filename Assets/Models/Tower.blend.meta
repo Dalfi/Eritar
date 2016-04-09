@@ -1,16 +1,182 @@
 fileFormatVersion: 2
 guid: 99f247d9fa4392243aa26b90b714f268
-timeCreated: 1459864715
+timeCreated: 1460056746
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: world_worldspawn_Brush_1
+    100004: world_worldspawn_Brush_10
+    100006: world_worldspawn_Brush_11
+    100008: world_worldspawn_Brush_12
+    100010: world_worldspawn_Brush_13
+    100012: world_worldspawn_Brush_14
+    100014: world_worldspawn_Brush_15
+    100016: world_worldspawn_Brush_16
+    100018: world_worldspawn_Brush_17
+    100020: world_worldspawn_Brush_18
+    100022: world_worldspawn_Brush_19
+    100024: world_worldspawn_Brush_2
+    100026: world_worldspawn_Brush_20
+    100028: world_worldspawn_Brush_21
+    100030: world_worldspawn_Brush_22
+    100032: world_worldspawn_Brush_23
+    100034: world_worldspawn_Brush_24
+    100036: world_worldspawn_Brush_25
+    100038: world_worldspawn_Brush_26
+    100040: world_worldspawn_Brush_27
+    100042: world_worldspawn_Brush_28
+    100044: world_worldspawn_Brush_29
+    100046: world_worldspawn_Brush_3
+    100048: world_worldspawn_Brush_30
+    100050: world_worldspawn_Brush_31
+    100052: world_worldspawn_Brush_32
+    100054: world_worldspawn_Brush_33
+    100056: world_worldspawn_Brush_34
+    100058: world_worldspawn_Brush_4
+    100060: world_worldspawn_Brush_5
+    100062: world_worldspawn_Brush_6
+    100064: world_worldspawn_Brush_7
+    100066: world_worldspawn_Brush_8
+    100068: world_worldspawn_Brush_9
     400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Circle
-    6400000: //RootNode
+    400002: world_worldspawn_Brush_1
+    400004: world_worldspawn_Brush_10
+    400006: world_worldspawn_Brush_11
+    400008: world_worldspawn_Brush_12
+    400010: world_worldspawn_Brush_13
+    400012: world_worldspawn_Brush_14
+    400014: world_worldspawn_Brush_15
+    400016: world_worldspawn_Brush_16
+    400018: world_worldspawn_Brush_17
+    400020: world_worldspawn_Brush_18
+    400022: world_worldspawn_Brush_19
+    400024: world_worldspawn_Brush_2
+    400026: world_worldspawn_Brush_20
+    400028: world_worldspawn_Brush_21
+    400030: world_worldspawn_Brush_22
+    400032: world_worldspawn_Brush_23
+    400034: world_worldspawn_Brush_24
+    400036: world_worldspawn_Brush_25
+    400038: world_worldspawn_Brush_26
+    400040: world_worldspawn_Brush_27
+    400042: world_worldspawn_Brush_28
+    400044: world_worldspawn_Brush_29
+    400046: world_worldspawn_Brush_3
+    400048: world_worldspawn_Brush_30
+    400050: world_worldspawn_Brush_31
+    400052: world_worldspawn_Brush_32
+    400054: world_worldspawn_Brush_33
+    400056: world_worldspawn_Brush_34
+    400058: world_worldspawn_Brush_4
+    400060: world_worldspawn_Brush_5
+    400062: world_worldspawn_Brush_6
+    400064: world_worldspawn_Brush_7
+    400066: world_worldspawn_Brush_8
+    400068: world_worldspawn_Brush_9
+    2300000: world_worldspawn_Brush_1
+    2300002: world_worldspawn_Brush_10
+    2300004: world_worldspawn_Brush_11
+    2300006: world_worldspawn_Brush_12
+    2300008: world_worldspawn_Brush_13
+    2300010: world_worldspawn_Brush_14
+    2300012: world_worldspawn_Brush_15
+    2300014: world_worldspawn_Brush_16
+    2300016: world_worldspawn_Brush_17
+    2300018: world_worldspawn_Brush_18
+    2300020: world_worldspawn_Brush_19
+    2300022: world_worldspawn_Brush_2
+    2300024: world_worldspawn_Brush_20
+    2300026: world_worldspawn_Brush_21
+    2300028: world_worldspawn_Brush_22
+    2300030: world_worldspawn_Brush_23
+    2300032: world_worldspawn_Brush_24
+    2300034: world_worldspawn_Brush_25
+    2300036: world_worldspawn_Brush_26
+    2300038: world_worldspawn_Brush_27
+    2300040: world_worldspawn_Brush_28
+    2300042: world_worldspawn_Brush_29
+    2300044: world_worldspawn_Brush_3
+    2300046: world_worldspawn_Brush_30
+    2300048: world_worldspawn_Brush_31
+    2300050: world_worldspawn_Brush_32
+    2300052: world_worldspawn_Brush_33
+    2300054: world_worldspawn_Brush_34
+    2300056: world_worldspawn_Brush_4
+    2300058: world_worldspawn_Brush_5
+    2300060: world_worldspawn_Brush_6
+    2300062: world_worldspawn_Brush_7
+    2300064: world_worldspawn_Brush_8
+    2300066: world_worldspawn_Brush_9
+    3300000: world_worldspawn_Brush_1
+    3300002: world_worldspawn_Brush_10
+    3300004: world_worldspawn_Brush_11
+    3300006: world_worldspawn_Brush_12
+    3300008: world_worldspawn_Brush_13
+    3300010: world_worldspawn_Brush_14
+    3300012: world_worldspawn_Brush_15
+    3300014: world_worldspawn_Brush_16
+    3300016: world_worldspawn_Brush_17
+    3300018: world_worldspawn_Brush_18
+    3300020: world_worldspawn_Brush_19
+    3300022: world_worldspawn_Brush_2
+    3300024: world_worldspawn_Brush_20
+    3300026: world_worldspawn_Brush_21
+    3300028: world_worldspawn_Brush_22
+    3300030: world_worldspawn_Brush_23
+    3300032: world_worldspawn_Brush_24
+    3300034: world_worldspawn_Brush_25
+    3300036: world_worldspawn_Brush_26
+    3300038: world_worldspawn_Brush_27
+    3300040: world_worldspawn_Brush_28
+    3300042: world_worldspawn_Brush_29
+    3300044: world_worldspawn_Brush_3
+    3300046: world_worldspawn_Brush_30
+    3300048: world_worldspawn_Brush_31
+    3300050: world_worldspawn_Brush_32
+    3300052: world_worldspawn_Brush_33
+    3300054: world_worldspawn_Brush_34
+    3300056: world_worldspawn_Brush_4
+    3300058: world_worldspawn_Brush_5
+    3300060: world_worldspawn_Brush_6
+    3300062: world_worldspawn_Brush_7
+    3300064: world_worldspawn_Brush_8
+    3300066: world_worldspawn_Brush_9
+    4300000: world_worldspawn_Brush_30
+    4300002: world_worldspawn_Brush_15
+    4300004: world_worldspawn_Brush_29
+    4300006: world_worldspawn_Brush_11
+    4300008: world_worldspawn_Brush_26
+    4300010: world_worldspawn_Brush_9
+    4300012: world_worldspawn_Brush_16
+    4300014: world_worldspawn_Brush_20
+    4300016: world_worldspawn_Brush_21
+    4300018: world_worldspawn_Brush_14
+    4300020: world_worldspawn_Brush_13
+    4300022: world_worldspawn_Brush_6
+    4300024: world_worldspawn_Brush_1
+    4300026: world_worldspawn_Brush_28
+    4300028: world_worldspawn_Brush_17
+    4300030: world_worldspawn_Brush_2
+    4300032: world_worldspawn_Brush_27
+    4300034: world_worldspawn_Brush_10
+    4300036: world_worldspawn_Brush_7
+    4300038: world_worldspawn_Brush_12
+    4300040: world_worldspawn_Brush_5
+    4300042: world_worldspawn_Brush_8
+    4300044: world_worldspawn_Brush_33
+    4300046: world_worldspawn_Brush_3
+    4300048: world_worldspawn_Brush_18
+    4300050: world_worldspawn_Brush_34
+    4300052: world_worldspawn_Brush_19
+    4300054: world_worldspawn_Brush_25
+    4300056: world_worldspawn_Brush_4
+    4300058: world_worldspawn_Brush_23
+    4300060: world_worldspawn_Brush_22
+    4300062: world_worldspawn_Brush_31
+    4300064: world_worldspawn_Brush_32
+    4300066: world_worldspawn_Brush_24
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -39,7 +205,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

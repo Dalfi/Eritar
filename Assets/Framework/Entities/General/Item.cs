@@ -7,20 +7,12 @@ namespace Eritar.Framework.Entities.General
 {
   public class Item : WorldObject
   {
-    private Dictionary<RawResource, int> _rawIngredients;
-    private Dictionary<Item, int> _ingredients;
+    private List<Ingredient> _ingredients;
 
     private float _craftingSpeed;
     private float _craftingTime;
 
-
-    public Dictionary<RawResource, int> RawIngredients
-    {
-      get { return _rawIngredients; }
-      set { _rawIngredients = value; }
-    }
-
-    public Dictionary<Item, int> Ingredients
+    public List<Ingredient> Ingredients
     {
       get { return _ingredients; }
       set { _ingredients = value; }
@@ -47,25 +39,30 @@ namespace Eritar.Framework.Entities.General
       obj.PrepareSaveObject();
 
       XmlSerializer serializer = new XmlSerializer(typeof(Item));
-      TextWriter writer = new StreamWriter(FilePath);
 
-      // Serializes the purchase order, and closes the TextWriter.
-      serializer.Serialize(writer, obj);
-      writer.Close();
+      using (TextWriter writer = new StreamWriter(FilePath))
+      {
+        // Serializes the purchase order, and closes the TextWriter.
+        serializer.Serialize(writer, obj);
+        writer.Close();
+      }
 
       return true;
     }
 
     public static Item LoadItemFromXML(string FilePath)
     {
+      Item obj;
+
       XmlSerializer serializer = new XmlSerializer(typeof(Item));
       serializer.UnknownNode += new XmlNodeEventHandler(serializer_UnknownNode);
       serializer.UnknownAttribute += new XmlAttributeEventHandler(serializer_UnknownAttribute);
 
       // A FileStream is needed to read the XML document.
-      FileStream fs = new FileStream(FilePath, FileMode.Open);
-
-      Item obj = (Item)serializer.Deserialize(fs);
+      using (FileStream fs = new FileStream(FilePath, FileMode.Open))
+      {
+        obj = (Item)serializer.Deserialize(fs);
+      }
 
       return obj;
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Building xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ObjectName>Palisade</ObjectName>
+  <ObjectGUID>10a1b5ce-453e-4154-96dc-c4b968f42b1c</ObjectGUID>
+  <Position>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </Position>
+  <Hitpoints>150</Hitpoints>
+  <BuildingTime>0</BuildingTime>
+</Building>

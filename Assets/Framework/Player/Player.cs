@@ -7,8 +7,8 @@ namespace Eritar.Framework
   {
     private string _username;
 
-    public List<Unit> Units { get; protected set; }
-    public List<Building> Buildings { get; protected set; }
+    //public List<Unit> Units { get; protected set; }
+    //public List<Building> Buildings { get; protected set; }
     protected List<Research> CompletedResearch { get; set; }
 
     public string Username
@@ -19,8 +19,6 @@ namespace Eritar.Framework
 
     public virtual void Start()
     {
-      Units = new List<Unit>();
-      Buildings = new List<Building>();
       CompletedResearch = new List<Research>();
     }
 
@@ -46,6 +44,10 @@ namespace Eritar.Framework
 
       return result;
     }
-    
+
+    public void ResearchCompleted(Research research)
+    {
+      CompletedResearch.Add(research);
+    }
   }
 }
