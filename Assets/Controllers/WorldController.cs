@@ -41,6 +41,7 @@ namespace Eritar
       BoxCollider col = this.gameObject.AddComponent<BoxCollider>();
       col.size = new Vector3(world.GetCorrectWidth(), 1, world.GetCorrectHeight());
       col.center = new Vector3(world.GetCorrectWidth() / 2, 0, world.GetCorrectHeight() / 2);
+      col.tag = "Ground";
 
       // Center the Camera
       Camera.main.transform.position = new Vector3(world.Width / 2, Camera.main.transform.position.y, world.Height / 2);
