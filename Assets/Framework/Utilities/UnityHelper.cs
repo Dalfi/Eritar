@@ -31,7 +31,7 @@ namespace Eritar.Framework.Utilities
       }
     }
 
-    public static List<Vector3> GetCorners(this Bounds bounds)
+    public static List<Vector3> GetCorners(this Bounds bounds, Camera cam)
     {    
       //shorthand for the coordinates of the center of the selection bounds
       float cx = bounds.center.x;
@@ -44,14 +44,14 @@ namespace Eritar.Framework.Utilities
 
       //Determine the screen coordinates for the corners of the selection bounds
       List<Vector3> corners = new List<Vector3>();
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz + ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz - ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy - ey, cz + ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx - ex, cy + ey, cz + ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx + ex, cy - ey, cz - ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx - ex, cy - ey, cz + ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx - ex, cy + ey, cz - ez)));
-      corners.Add(Camera.main.WorldToScreenPoint(new Vector3(cx - ex, cy - ey, cz - ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz + ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx + ex, cy + ey, cz - ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx + ex, cy - ey, cz + ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx - ex, cy + ey, cz + ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx + ex, cy - ey, cz - ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx - ex, cy - ey, cz + ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx - ex, cy + ey, cz - ez)));
+      corners.Add(cam.WorldToScreenPoint(new Vector3(cx - ex, cy - ey, cz - ez)));
 
       return corners;
     }

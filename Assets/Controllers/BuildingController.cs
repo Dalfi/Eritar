@@ -2,6 +2,7 @@
 using Eritar.Framework.Entities.General;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Eritar
 {
@@ -37,6 +38,7 @@ namespace Eritar
       // Register our callback so that our GameObject gets updated whenever
       // the tile's type changes.
       world.RegisterBuildingCreated(OnBuildingCreated);
+      WorldController.Instance.RegisterSelectionChanged(OnSelectionChanged);
     }
 
     public void OnBuildingCreated(Building building)
@@ -50,6 +52,33 @@ namespace Eritar
 
       buildingGameObjectMap.Add(building, buil_go);
 
+    }
+
+    public void OnSelectionChanged(WorldObject wo)
+    {
+      if (wo != null && wo.GetType() != typeof(Building))
+        return; // was not a building so don't matter for us here
+
+      if(wo == null) //Deselecting
+      {
+        if (buildingGameObjectMap.Keys.Count((b) => b.IsSelected) <= 0)
+          return;
+        else
+        {
+          foreach (var item in buildingGameObjectMap.Where((b)=>b.Key.IsSelected))
+          {
+            item.Key.IsSelected = false;
+            UpdateSelection(item.Value);
+          }
+        }
+      }
+      else
+      {
+        //Selection a building
+        Building b = (Building)wo;
+        b.IsSelected = true;
+        UpdateSelection(buildingGameObjectMap[b]);        
+      }
     }
 
     public GameObject GetPrefab(string tag)
@@ -70,6 +99,25 @@ namespace Eritar
       {
         return lst[0];
       }
+    }
+
+    internal Building BuildingSelected (GameObject go)
+    {
+      if (buildingGameObjectMap.ContainsValue(go))
+      {
+        Building b = buildingGameObjectMap.FirstOrDefault((bgom) => bgom.Value == go).Key;
+
+        if (b != null)
+        {
+          return b;
+        }
+      }
+        return null;
+    }
+
+    private void UpdateSelection(GameObject go)
+    {
+      Debug.Log("Selected: " + go.name);
     }
   }
 }

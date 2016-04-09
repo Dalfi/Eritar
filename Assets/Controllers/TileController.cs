@@ -50,6 +50,7 @@ namespace Eritar
           tile_go.transform.localScale = new Vector3(12.5f * world.TileSize, 12.5f * world.TileSize, 12.5f);
           tile_go.transform.rotation = Quaternion.Euler(270, 0, 0);
           tile_go.transform.SetParent(this.transform, true);
+          tile_go.tag = "Ground";
 
           // Add a Sprite Renderer
           // Add a default sprite for empty tiles.

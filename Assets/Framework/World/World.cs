@@ -175,9 +175,13 @@ namespace Eritar.Framework
         cbBuildingCreated(building);
     }
 
-    public void CreateUnit(Unit unit, Player owner)
+    public void CreateUnit(Unit unitType, Player owner, Vector3 spawnPosition, Quaternion spawnRotation)
     {
+      Unit unit = unitType.Clone();
+
       unit.Owner = owner;
+      unit.Position = spawnPosition;
+      unit.Rotation = spawnRotation;
 
       Units.Add(unit);
 

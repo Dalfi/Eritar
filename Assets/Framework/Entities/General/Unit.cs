@@ -62,12 +62,6 @@ namespace Eritar.Framework.Entities.General
       set { _attackSpeed = value; }
     }
 
-    public float TrainigTime
-    {
-      get { return _trainingTime; }
-      set { _trainingTime = value; }
-    }
-
     public float MoveSpeed
     {
       get { return _moveSpeed; }
@@ -101,8 +95,44 @@ namespace Eritar.Framework.Entities.General
       }
     }
 
+    public Unit()
+    {
+    }
+
+    protected Unit(Unit u)
+      :base()
+    {
+      this.ObjectName = u.ObjectName;
+      this.ObjectGUID = u.ObjectGUID;
+      this.ObjectDescription = u.ObjectDescription;
+      this.IconFilePath = u.IconFilePath;
+      this.Ingredients = u.Ingredients;
+      this.Hitpoints = u.Hitpoints;
+      this.BuildingTime = u.BuildingTime;
+      this.Armor = u.Armor;
+      this.Accuracy = u.Accuracy;
+      this.MoveSpeed = u.MoveSpeed;
+      this.RotateSpeed = u.RotateSpeed;
+      this.Range = u.Range;
+      this.AttackDamage = u.AttackDamage;
+      this.AttackSpeed = u.AttackSpeed;
+    }
+
+    virtual public Unit Clone()
+    {
+      return new Unit(this);
+    }
+
     public override void Update(float deltaTime)
     {
+      if (IsInConstruction)
+      {
+        BuildingTime = BuildingTime - deltaTime;
+      }
+      else
+      {
+
+      }
     }
 
     public static bool SaveUnit(Unit obj, string FilePath)

@@ -1,4 +1,7 @@
 ﻿using Eritar.Framework;
+using Eritar.Framework.Entities.General;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eritar
@@ -9,6 +12,7 @@ namespace Eritar
 
     public World world { get; protected set; }
 
+    private Action<WorldObject> cbSelectionChanged;
 
     // Use this for initialization
     void OnEnable()
@@ -22,7 +26,7 @@ namespace Eritar
 
       CreateEmptyWorld();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -45,6 +49,53 @@ namespace Eritar
 
       // Center the Camera
       Camera.main.transform.position = new Vector3(world.Width / 2, Camera.main.transform.position.y, world.Height / 2);
+    }
+
+    public bool WorldObjectSelected(GameObject go)
+    {
+      WorldObject WorldObject = null;
+
+      WorldObject = BuildingController.Instance.BuildingSelected(go);
+
+      if (WorldObject != null)
+      {
+        OnSelectionChanged(WorldObject); //Let things know that the Selection changed
+        return true;
+      }
+
+      WorldObject = UnitController.Instance.UnitSelected(go);
+
+      if (WorldObject != null)
+      {
+        OnSelectionChanged(WorldObject); //Let things know that the Selection changed
+        return true;
+      }
+
+      return false;
+    }
+
+    public void ClearWorldObjectSelection()
+    {
+      OnSelectionChanged(null); //Let things know that the Selection changed
+    }
+
+    // Gets called whenever the selection changes
+    void OnSelectionChanged(WorldObject wo)
+    {
+      if (cbSelectionChanged == null)
+        return;
+
+      cbSelectionChanged(wo);
+    }
+
+    public void RegisterSelectionChanged(Action<WorldObject> callbackfunc)
+    {
+      cbSelectionChanged += callbackfunc;
+    }
+
+    public void UnregisterSelectionChanged(Action<WorldObject> callbackfunc)
+    {
+      cbSelectionChanged -= callbackfunc;
     }
   }
 }

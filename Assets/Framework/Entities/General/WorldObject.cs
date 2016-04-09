@@ -10,6 +10,7 @@ namespace Eritar.Framework.Entities.General
     private string _objectDescription;
     private string _iconFilePath;
     private string _objectGUID;
+    private bool _isSelected;
 
     private Vector3 position;
     private Quaternion rotation;
@@ -37,6 +38,12 @@ namespace Eritar.Framework.Entities.General
       set { _objectGUID = value; }
     }
 
+    public bool IsSelected
+    {
+      get { return _isSelected; }
+      set { _isSelected = value; }
+    }
+
     public Vector3 Position
     {
       get { return position; }
@@ -53,6 +60,11 @@ namespace Eritar.Framework.Entities.General
     {
       get { return _owner; }
       set { _owner = value; }
+    }
+
+    public WorldObject()
+    {
+      IsSelected = false;
     }
 
     public abstract void Update(float deltaTime);

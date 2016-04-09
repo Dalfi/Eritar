@@ -6,16 +6,37 @@ namespace Eritar
 {
   public class CameraController : MonoBehaviour
   {
+    public static CameraController Instance { get; protected set; }
+    public Camera myCamera { get; protected set; }
+
+    // Use this for initialization
+    void OnEnable()
+    {
+      if (Instance != null)
+      {
+        Debug.LogError("There should never be two camera controllers.");
+      }
+
+      Instance = this;
+    }
+
+    public void Start()
+    {
+      myCamera = Camera.main;
+    }
+
     // Update is called once per frame
     public void Update()
     {
+      myCamera = Camera.main;
+
       MoveCamera();
       RotateCamera();
     }
 
     private void RotateCamera()
     {
-      Vector3 origin = Camera.main.transform.eulerAngles;
+      Vector3 origin = myCamera.transform.eulerAngles;
       Vector3 destination = origin;
 
       //detect rotation amount if ALT is being held and the Right mouse button is down
@@ -50,7 +71,7 @@ namespace Eritar
       //if a change in position is detected perform the necessary update
       if (destination != origin)
       {
-        Camera.main.transform.eulerAngles = Vector3.MoveTowards(origin, destination, Time.deltaTime * GlobalResourceManager.RotateSpeed);
+        myCamera.transform.eulerAngles = Vector3.MoveTowards(origin, destination, Time.deltaTime * GlobalResourceManager.RotateSpeed);
       }
     }
 
@@ -83,7 +104,7 @@ namespace Eritar
 
       //make sure movement is in the direction the camera is pointing
       //but ignore the vertical tilt of the camera to get sensible scrolling
-      movement = Camera.main.transform.TransformDirection(movement);
+      movement = myCamera.transform.TransformDirection(movement);
       movement.y = 0;
 
       // handle camera scrolling
@@ -91,7 +112,7 @@ namespace Eritar
         movement.y -= GlobalResourceManager.ScrollSpeed * Input.GetAxis("Mouse ScrollWheel");
 
       //calculate desired camera position based on received input
-      Vector3 origin = Camera.main.transform.position;
+      Vector3 origin = myCamera.transform.position;
       Vector3 destination = origin;
       destination.x += movement.x;
       destination.y += movement.y;
@@ -103,7 +124,7 @@ namespace Eritar
       //if a change in position is detected perform the necessary update
       if (destination != origin)
       {
-        Camera.main.transform.position = Vector3.MoveTowards(origin, destination, Time.deltaTime * GlobalResourceManager.ScrollSpeed);
+        myCamera.transform.position = Vector3.MoveTowards(origin, destination, Time.deltaTime * GlobalResourceManager.ScrollSpeed);
       }
     }
   }
