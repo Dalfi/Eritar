@@ -106,6 +106,7 @@ namespace Eritar
         else
         {
           // clear selection
+          WorldController.Instance.ClearWorldObjectSelection();
         }
       }
     }
@@ -180,7 +181,7 @@ namespace Eritar
 
       GameObject prefab = BuildingController.Instance.GetPrefab(tag);
 
-      buildingPlacementTemplate = (GameObject)Instantiate(prefab, new Vector3(p.x, 0.1f, p.z), prefab.transform.rotation);
+      buildingPlacementTemplate = (GameObject)Instantiate(prefab, new Vector3(p.x, -0.9f, p.z), prefab.transform.rotation);
       buildingPlacementTemplate.layer = 2;//Ignore Raycast
 
       foreach (GameObject item in buildingPlacementTemplate.GetChildren())

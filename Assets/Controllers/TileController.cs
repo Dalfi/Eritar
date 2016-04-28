@@ -46,7 +46,7 @@ namespace Eritar
           }
 
           tile_go.name = "Tile_" + x + "_" + y;
-          tile_go.transform.position = new Vector3(posx, 0, posy);
+          tile_go.transform.position = new Vector3(posx, -1, posy);
           tile_go.transform.localScale = new Vector3(12.5f * world.TileSize, 12.5f * world.TileSize, 12.5f);
           tile_go.transform.rotation = Quaternion.Euler(270, 0, 0);
           tile_go.transform.SetParent(this.transform, true);

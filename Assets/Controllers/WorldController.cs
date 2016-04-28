@@ -76,6 +76,7 @@ namespace Eritar
 
     public void ClearWorldObjectSelection()
     {
+      Debug.Log("Objects Deselected");
       OnSelectionChanged(null); //Let things know that the Selection changed
     }
 
