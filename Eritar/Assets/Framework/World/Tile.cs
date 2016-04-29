@@ -20,6 +20,8 @@ namespace Eritar.Framework.World
     public int X { get; protected set; }
     public int Y { get; protected set; }
 
+    private Action<Tile> cbTileChanged;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="Tile"/> class.
     /// </summary>
@@ -32,6 +34,17 @@ namespace Eritar.Framework.World
       this.X = x;
       this.Y = y;
     }
+    
+    public void RegisterTileChanged(Action<Tile> cb)
+    {
+      cbTileChanged += cb;
+    }
+
+    public void UnRegisterTileChanged(Action<Tile> cb)
+    {
+      cbTileChanged -= cb;
+    }
+
 
   }
 }

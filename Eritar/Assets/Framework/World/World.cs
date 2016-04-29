@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine;
 using System;
 
 namespace Eritar.Framework.World
@@ -30,6 +30,23 @@ namespace Eritar.Framework.World
       Width = width;
       Height = height;
 
+      for (int x = 0; x < Width; x++)
+      {
+        for (int y = 0; y < height; y++)
+        {
+          tiles[x, y] = new Tile(this, x, y);
+          tiles[x, y].RegisterTileChanged(OnTileChanged);
+        }
+      }
+
+
+
+      Debug.Log("World created with " + (Width * Height) + " tiles.");
+    }
+
+
+    private void OnTileChanged(Tile tile)
+    {
 
     }
   }
