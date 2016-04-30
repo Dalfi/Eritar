@@ -44,6 +44,21 @@ namespace Eritar.Framework.World
       Debug.Log("World created with " + (Width * Height) + " tiles.");
     }
 
+    /// <summary>
+    /// Gets the tile data at x and y.
+    /// </summary>
+    /// <returns>The <see cref="Tile"/>.</returns>
+    /// <param name="x">The x coordinate.</param>
+    /// <param name="y">The y coordinate.</param>
+    public Tile GetTileAt(int x, int y)
+    {
+      if (x >= Width || x < 0 || y >= Height || y < 0)
+      {
+        //Debug.LogError("Tile ("+x+","+y+") is out of range.");
+        return null;
+      }
+      return tiles[x, y];
+    }
 
     private void OnTileChanged(Tile tile)
     {
